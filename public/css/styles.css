@@ -1,0 +1,109 @@
+html {
+    background-color: #2A3132;
+}
+
+body {
+    background-size: cover;
+    background-repeat: no-repeat;
+    text-align: center;
+    font-size: 2.5em;
+}
+
+main {
+    width: 50%;
+    margin: 0 auto; /*centers the content*/
+}
+
+.mainTextA {
+    color: #90AFC5;
+    font-size: 0.8em;
+    font-family: 'Press Start 2P', cursive;
+}
+
+.mainTextB {
+    color: #336B87;
+    font-size: 0.8em;
+    font-family: 'Press Start 2P', cursive;
+}
+
+.footA {
+    color: #336B87;
+    font-size: 0.4em;
+    font-family: 'Press Start 2P', cursive;
+}
+
+.footB {
+    color: #90AFC5;
+    font-size: 0.4em;
+    font-family: 'Press Start 2P', cursive;
+}
+
+nav[role="select"] {
+    width: 100%;
+    position: relative;
+    color: #000;
+    top: 10%;
+    left: 10%;
+    font-family: 'Press Start 2P', cursive;
+}
+nav[role="select"] > select {
+    display: none;
+}
+nav[role="select"] ul {
+    width: 100%;
+    list-style: none;
+}
+nav[role="select"] ul > li {
+    float: left;
+    padding: 0.55em 0.45em;
+    width: 19%;
+    font-size: 0.6em;
+    background-color: #763626;
+    color: #2A3132;
+    text-align: center;
+    transition-duration: 0.15s;
+    transition-timing-function: ease-in-out;
+    transition-property: box-shadow, background, color, text-align, padding;
+    cursor: pointer;
+}
+nav[role="select"] ul > li:hover {
+    background-color: #602c1f;
+    color: #fff;
+    text-align: left;
+    padding-left: 0.75em;
+    box-shadow: 0 0 0 0.25em rgba(0, 0, 0, .3), 0 0 0 0.5em rgba(0, 0, 0, .3), 0 0 0 0.75em rgba(0, 0, 0, .3), inset 0 0 0 0.25em rgba(0, 0, 0, .3);
+}
+nav[role="select"] ul > li > a {
+    color: inherit;
+    text-decoration: none;
+    transition: inherit;
+}
+/* small screens */
+@media screen and (max-width: 44em) {
+    body {
+        margin: 1em 0;
+   }
+    nav[role="select"] ul {
+        display: none;
+   }
+    nav[role="select"]:after {
+        position: absolute;
+        z-index: -1;
+        content: "Menu";
+        right: 0;
+        bottom: -1.75em;
+        background: #763626;
+        color: #2A3132;
+        padding: 0.15em 0.55em;
+   }
+    nav[role="select"] select {
+        display: block;
+        user-select: none;
+        cursor: pointer;
+        width: 100%;
+        padding: 0.55em 0.45em;
+        border: none;
+        background-color: #602c1f;
+        font: 1.2em 'Exo', sans-serif;
+   }
+}
