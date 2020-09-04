@@ -53,18 +53,38 @@ module.exports = {
     //     });//request  
     // }, //function
     
-    // createConnection: function() {
-    //     /**
-    //      * creates database connection
-    //      * @return database connection
-    //      */
-    //     var conn = mysql.createConnection({
-    //         host: "cst336db.space", 
-    //         user: "cst336_dbUser004",
-    //         password: "clmxkg",
-    //         database: "cst336_db004"
-    //     });
-    //     return conn;
-    // }
-
+    createConnection: function() {
+        /**
+         * creates database connection
+         * @return database connection
+         */
+        var conn = mysql.createConnection({
+            connectionLimit: 100000,
+            host: "localhost", 
+            user: "root",
+            password: "Delonh88",
+            database: "traffictracer"
+        });
+        return conn;
+    }
 }
+
+// createConnection = () => mysql.createPool({
+//     connectionLimit: 100000,
+//     host: "localhost:3306", 
+//     user: "root",
+//     password: "Delonh88",
+//     database: "traffictracer"
+// });
+
+// const connection = createConnection();
+// module.exports.query = (sql, sqlParams = []) => new Promise((resolve, reject) => {
+//   connection.getConnection((err, connection) => {
+//       if (err) return reject(err);
+
+//       connection.query(sql, sqlParams, (err, result) => {
+//         if (err) return reject(err);
+//         resolve(result);
+//       });
+//   });
+// });
