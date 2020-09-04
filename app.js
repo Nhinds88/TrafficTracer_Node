@@ -11,81 +11,79 @@ app.use(express.static("public"));
 
 //root route
 app.get("/", async function(req, res) {
-    // var imageURL = await tools.getRandomImages("", 1)
     res.render("index");
-});//root route
+}); //root route
 
+//How it works
+app.get("/howitworks", async function(req, res) {
+    res.render("howitworks");
+}); //How it works
 
-// app.get("/search", async function(req, res){
-    
-//     var keyword = req.query.keyword
-    
-//     var imageURL = await tools.getRandomImages("", 1)
-//     var imageURLs = await tools.getRandomImages(keyword, 9)
-    
-//     console.log("Images URLs: "+imageURLs)
-//     res.render("results", {"imageURLs" : imageURLs, "imageURL" : imageURL, "keyword" : keyword});
-// });//search
+//features
+app.get("/features", async function(req, res) {
+    res.render("features");
+}); //features
 
-// app.get("/api/updateFavorites", function(req, res) {
-    
-//     var conn = tools.createConnection();
-//     var sql;
-//     var sqlParams;
-    
-//     if (req.query.action == "add") {
-//         sql = "INSERT INTO favorites (imageURL, keyword) VALUES (?, ?)";
-//         sqlParams = [req.query.imageURL, req.query.keyword];
-//     } else {
-//         sql = "DELETE FROM favorites WHERE imageURL = ?";
-//         sqlParams = [req.query.imageURL];
-//     }
-    
-//     conn.connect(function(err){
-        
-//         if (err) throw err;
-        
-//         conn.query(sql, sqlParams, function(err, result){
-//             if (err) throw err;
-//         });//query
-//     });//connect
-    
-//     res.send("it works!");
-// });//updateFavorites
+//Demo
+app.get("/demo", async function(req, res) {
+    res.render("demo");
+}); //Demo
 
-// app.get("/displayKeywords", async function(req, res) {
-    
-//     var imageURL = await tools.getRandomImages("", 1)
-//     var conn = tools.createConnection();
-//     var sql = "SELECT DISTINCT keyword FROM `favorites` ORDER BY keyword";
-    
-//     conn.connect( function(err){
-        
-//         if (err) throw err;
-//         conn.query(sql, function(err, result){
-//             if (err) throw err;
-//             res.render("favorites", {"rows":result, "imageURL" : imageURL});
-//         });//query
-//     });//connection
-// });//displayKeywords
+//Login
+app.get("/login", async function(req, res) {
+    res.render("login");
+}); //Login
 
-// app.get("/api/displayFavorites", function(req, res) {
-//     var conn = tools.createConnection();
-//     var sql = "SELECT imageURL FROM favorites WHERE keyword = ?";
-//     var sqlParams = [req.query.keyword];
-    
-//     conn.connect( function(err){
-        
-//         if (err) throw err;
-//         conn.query(sql, sqlParams, function(err, results){
-//             if (err) throw err;
-//             res.send(results);
-//         });//query
-//     });//connection
-// });//displayFavorites
+//Dashboard
+app.get("/dashboard", async function(req, res) {
+    res.render("dashboard");
+}); //Dashboard
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////
+/////////////////////////////////////////////
+///////////////////////////////////
+/////////////////////////
+///////////////
+/////
+/// 
+
+//Contact us
+app.get("/contactus", async function(req, res) {
+    res.render("contactus");
+}); //Contact us
+
+//About us
+app.get("/aboutus", async function(req, res) {
+    res.render("aboutus");
+}); //About us
+
+//Support
+app.get("/support", async function(req, res) {
+    res.render("support");
+}); //Support
+
+//Privacy
+app.get("/privacy", async function(req, res) {
+    res.render("privacy");
+}); //Privacy
+
+//Legal
+app.get("/legal", async function(req, res) {
+    res.render("legal");
+}); //Legal
+
+//Terms
+app.get("/terms", async function(req, res) {
+    res.render("terms");
+}); //Terms
 
 //server listener
-var listener = app.listen(process.env.PORT, process.env.IP, function(){
+var listener = app.listen(process.env.PORT, process.env.IP, function() {
     console.log("Express server is Running...");
     console.log('Listening on port ' + listener.address().port);
 });
