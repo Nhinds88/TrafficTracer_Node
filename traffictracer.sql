@@ -18,61 +18,34 @@ USE `traffictracer`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `foottraffic`
+-- Dumping data for table `foottraffic`
 --
 
-DROP TABLE IF EXISTS `foottraffic`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `foottraffic` (
-  `trafficid` int(11) NOT NULL AUTO_INCREMENT,
-  `enterorexit` varchar(45) NOT NULL,
-  `customerid` int(11) NOT NULL,
-  `merchantid` int(11) NOT NULL,
-  `dur` float DEFAULT NULL,
-  `date` date NOT NULL,
-  `time` time NOT NULL,
-  PRIMARY KEY (`trafficid`),
-  KEY `merchantid_idx` (`merchantid`),
-  CONSTRAINT `merchantid` FOREIGN KEY (`merchantid`) REFERENCES `merchant` (`merchantid`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+LOCK TABLES `foottraffic` WRITE;
+/*!40000 ALTER TABLE `foottraffic` DISABLE KEYS */;
+INSERT INTO `foottraffic` VALUES (21,'exit',1,2,0,'2020-09-22','19:14:17'),(22,'exit',2,2,0,'2020-09-22','19:14:18'),(23,'exit',3,2,0,'2020-09-22','19:14:19'),(24,'enter',4,2,0,'2020-09-22','19:14:19'),(25,'exit',5,2,0,'2020-09-22','19:14:19'),(26,'enter',6,2,0,'2020-09-22','19:14:19'),(27,'enter',7,2,0,'2020-09-22','19:14:19'),(28,'exit',8,2,0,'2020-09-22','19:14:20'),(29,'exit',9,2,0,'2020-09-22','19:14:20'),(30,'exit',10,2,0,'2020-09-22','19:14:20'),(31,'exit',1,2,0,'2020-09-22','19:30:29'),(32,'exit',2,2,0,'2020-09-22','19:30:29'),(33,'exit',3,2,0,'2020-09-22','19:30:30'),(34,'enter',4,2,0,'2020-09-22','19:30:30'),(35,'exit',5,2,0,'2020-09-22','19:30:30'),(36,'enter',6,2,0,'2020-09-22','19:30:31'),(37,'enter',7,2,0,'2020-09-22','19:30:31'),(38,'exit',8,2,0,'2020-09-22','19:30:31'),(39,'exit',9,2,0,'2020-09-22','19:30:31'),(40,'exit',10,2,0,'2020-09-22','19:30:31'),(41,'exit',1,2,0,'2020-09-22','19:40:15'),(42,'exit',2,2,0,'2020-09-22','19:40:16'),(43,'exit',3,2,0,'2020-09-22','19:40:16'),(44,'enter',4,2,0,'2020-09-22','19:40:16'),(45,'exit',5,2,0,'2020-09-22','19:40:17'),(46,'enter',6,2,0,'2020-09-22','19:40:17'),(47,'enter',7,2,0,'2020-09-22','19:40:17'),(48,'exit',8,2,0,'2020-09-22','19:40:17'),(49,'exit',9,2,0,'2020-09-22','19:40:18'),(50,'exit',10,2,0,'2020-09-22','19:40:18'),(51,'exit',1,2,0,'2020-09-22','19:53:15'),(52,'exit',2,2,0,'2020-09-22','19:53:16'),(53,'exit',3,2,0,'2020-09-22','19:53:16'),(54,'enter',4,2,0,'2020-09-22','19:53:16'),(55,'exit',5,2,0,'2020-09-22','19:53:16'),(56,'enter',6,2,0,'2020-09-22','19:53:17'),(57,'enter',7,2,0,'2020-09-22','19:53:17'),(58,'exit',8,2,0,'2020-09-22','19:53:17'),(59,'exit',9,2,0,'2020-09-22','19:53:18'),(60,'exit',10,2,0,'2020-09-22','19:53:18'),(61,'exit',1,2,0,'2020-09-22','20:02:07'),(62,'exit',2,2,0,'2020-09-22','20:02:08'),(63,'exit',3,2,0,'2020-09-22','20:02:08'),(64,'enter',4,2,0,'2020-09-22','20:02:08'),(65,'exit',5,2,0,'2020-09-22','20:02:09'),(66,'enter',6,2,0,'2020-09-22','20:02:09'),(67,'enter',7,2,0,'2020-09-22','20:02:09'),(68,'exit',8,2,0,'2020-09-22','20:02:09'),(69,'exit',9,2,0,'2020-09-22','20:02:10'),(70,'exit',10,2,0,'2020-09-22','20:02:10');
+/*!40000 ALTER TABLE `foottraffic` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Table structure for table `merchant`
+-- Dumping data for table `merchant`
 --
 
-DROP TABLE IF EXISTS `merchant`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `merchant` (
-  `merchantid` int(11) NOT NULL AUTO_INCREMENT,
-  `merchantname` varchar(45) NOT NULL,
-  `currenttotal` int(11) DEFAULT NULL,
-  `entered` int(11) DEFAULT NULL,
-  `exited` int(11) DEFAULT NULL,
-  PRIMARY KEY (`merchantid`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+LOCK TABLES `merchant` WRITE;
+/*!40000 ALTER TABLE `merchant` DISABLE KEYS */;
+INSERT INTO `merchant` VALUES (2,'test store',NULL,NULL,NULL);
+/*!40000 ALTER TABLE `merchant` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Table structure for table `users`
+-- Dumping data for table `users`
 --
 
-DROP TABLE IF EXISTS `users`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `users` (
-  `userid` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `username` varchar(45) NOT NULL,
-  `password` varchar(45) NOT NULL,
-  `firstname` varchar(45) DEFAULT NULL,
-  `lastname` varchar(45) DEFAULT NULL,
-  `merchant` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`userid`),
-  KEY `merchantid_idx` (`merchant`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (1,'test','password','test','user','test store');
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Dumping events for database 'traffictracer'
@@ -87,4 +60,4 @@ CREATE TABLE `users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-09-17 16:18:50
+-- Dump completed on 2020-09-22 21:54:49
