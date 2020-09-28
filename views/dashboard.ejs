@@ -5,7 +5,26 @@
 
     <h1 class="pageTitle">Dashboard</h1>
 
-    <p class="mainTextB">More soon!</p>
+    <!-- <form class="center" action="counts" method='GET'>
+        <h2>Please Sign In</h2>
+        <input type="text" name="enterorexit" placeholder="please type enter or exit" required>
+        <input type="date" name="date1" required>
+        <input type="date" name="date2" required>
+        <input type="submit">
+        <h2>&nbsp;</h2>
+    </form> -->
+
+    <!-- <input type="number" id="merchid" name="merchantid" placeholder="Merchant ID" required> -->
+    <input type="text" id="eORe" name="enterorexit" placeholder="Enter or Exit" required>
+    <input type="date" id="d1" name="date1" placeholder="Starting Date" required>
+    <input type="date" id="d2" name="date2" placeholder="Ending Date" required>
+    <button id='getData'>
+        Get Data
+    </button>
+    <div class="container">
+        <canvas id="myChart"></canvas>
+    </div>
+    <div id="dataTest"></div>
 
     <br>
     <br>

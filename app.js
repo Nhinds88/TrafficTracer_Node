@@ -9,14 +9,18 @@ const app = express();
 
 app.set('view engine', 'ejs');
 app.use(express.static("public"));
+app.use(express.json({ limit: '1mb' }));
 
 // connection
 var connection = tools.createConnection();
 
+var merchant;
+var id;
+
 app.use(session({
 	secret: 'secret',
 	resave: true,
-	saveUninitialized: true
+    saveUninitialized: true
 }));
 app.use(bodyParser.urlencoded({extended : true}));
 app.use(bodyParser.json());
@@ -68,6 +72,7 @@ app.post("/auth", async function(req, res) {
             if (results.length > 0) {
                 req.session.loggedin = true;
                 req.session.username = username;
+                merchant = results[0].merchant;
                 res.redirect('/dashboard');
             } else {
                 res.send('Incorrect enter Username and/or Password!');
@@ -79,6 +84,39 @@ app.post("/auth", async function(req, res) {
         res.end();
     }
 });//Login Auth
+
+app.get('/api/counts', async function(req, res) {
+
+    console.log("merchant store " + merchant);
+
+    merchant = '"' + merchant + '"';
+
+    var sql = 'SELECT merchantid from merchant WHERE merchantname = ' + merchant;
+
+    connection.query(sql, function(error, mid, fields) {
+        console.log(mid);
+        if (!error) {
+            // id = mid[0].merchantid;
+            connection.query('SELECT trafficid, date, time FROM foottraffic WHERE merchantid = ' + mid[0].merchantid + ' AND enterorexit = ? AND date BETWEEN ? AND ?', [req.query.enterorexit, req.query.date1, req.query.date2], function(error, results, fields) {
+                if (!error) {
+                    res.send(results);
+                } else {
+                    console.log(error)
+                }
+            })
+        } else {
+            console.log(error)
+        }
+    });
+
+    // connection.query('SELECT trafficid, date, time FROM foottraffic WHERE merchantid = ' + id + ' AND enterorexit = ? AND date BETWEEN ? AND ?', [req.query.enterorexit, req.query.date1, req.query.date2], function(error, results, fields) {
+    //     if (!error) {
+    //         res.send(results);
+    //     } else {
+    //         console.log(error)
+    //     }
+    // })
+});
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////
