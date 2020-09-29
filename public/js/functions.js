@@ -30,7 +30,43 @@ $(document).ready(function(){
         return dates;
     };
 
+    function renderChart(data, labels) {
+        var ctx = document.getElementById("myChart").getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Customers',
+                    data: data,
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                            callback: function(value, index, values) {
+                                return value;
+                            }
+                        }
+                    }]
+                }
+            }
+        });
+    }
+
+    function getCounts(arr, val) {
+        var count = 0;
+        arr.forEach((v) => (v == val && count++));
+        return count;
+    }
+
     $("#getData").on('click', function() {
+
+        var customer = {trafficid: 0, date: "1988-09-30", time: "00:00:00"}
 
         date1Temp = new Date($("#d1").val().toString());
         date1 = new Date(date1Temp.getFullYear(), date1Temp.getMonth(), date1Temp.getDate() + 1);
@@ -40,8 +76,6 @@ $(document).ready(function(){
         const dates = getDatesBetween(date1, date2); 
 
         console.log(dates);
-
-        dateCount = [];
         
         $.ajax({
             method: "get", 
@@ -52,17 +86,21 @@ $(document).ready(function(){
                   }, 
             success: function(rows, status) {
 
-                // var output = "<ul>";
+                var dateCount = [];
+                var dateArray = [];
 
-                // rows.forEach(function(row, index) {
-                //     output += "<li>" + row.trafficid + " " +  row.date.substring(0, row.date.length - 14) + " " + row.time + "</li>"
-                //     // console.log(row)
-                // });
-                
-                // output += "</ul>";
-                // document.getElementById("dataTest").innerHTML = output;
+                rows.forEach(function(row, index) {
+                    dateArray[index] = row.date.substring(0, row.date.length - 14);
+                });
 
+                for (i = 0; i < dates.length; i++) {
+                    dateCount[i] = getCounts(dateArray, dates[i]);
+                }
 
+                console.log("Counts");
+                console.log(dateCount);
+
+                renderChart(dateCount, dates);
             }
         })
     })

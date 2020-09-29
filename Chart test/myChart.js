@@ -21,7 +21,7 @@ function renderChart(data, labels) {
                     ticks: {
                         beginAtZero: true,
                         callback: function(value, index, values) {
-                            return float2dollar(value);
+                            return value;
                         }
                     }
                 }]
